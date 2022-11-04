@@ -1,0 +1,18 @@
+[package]
+name = "frappslib"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.22"
+futures = "0.3.25"
+reqwest = { version = "0.11.12", features = ["cookies", "gzip", "deflate", "json"] }
+serde = "1.0.147"
+tokio = { version = "1.21.2", features = ["macros"] }
+
+[dev-dependencies]
+env_logger = "0.9.1"
+mockito = "0.31.0"
+tokio-test = "0.4.2"

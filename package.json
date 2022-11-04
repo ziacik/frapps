@@ -8,11 +8,11 @@
 		"test": "nx test"
 	},
 	"private": true,
-	"dependencies": {},
 	"devDependencies": {
 		"@nrwl/cli": "15.0.10",
 		"@nrwl/nx-cloud": "latest",
 		"@nrwl/workspace": "15.0.10",
+		"@nxrs/cargo": "^0.3.3",
 		"nx": "15.0.10",
 		"prettier": "^2.6.2",
 		"typescript": "~4.8.2"

@@ -1,0 +1,21 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"name": "frappslib",
+	"projectType": "library",
+	"sourceRoot": "packages/frappslib/src",
+	"targets": {
+		"test": {
+			"executor": "@nxrs/cargo:test",
+			"options": {}
+		},
+		"lint": {
+			"executor": "@nxrs/cargo:clippy",
+			"options": {
+				"fix": false,
+				"failOnWarnings": true,
+				"noDeps": true
+			}
+		}
+	},
+	"tags": []
+}

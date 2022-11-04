@@ -1,6 +1,9 @@
 {
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
 	"npmScope": "frapps",
+	"affected": {
+		"defaultBase": "master"
+	},
 	"tasksRunnerOptions": {
 		"default": {
 			"runner": "@nrwl/nx-cloud",
@@ -20,5 +23,6 @@
 		"default": ["{projectRoot}/**/*", "sharedGlobals"],
 		"production": ["default"],
 		"sharedGlobals": []
-	}
+	},
+	"plugins": ["@nxrs/cargo"]
 }

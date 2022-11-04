@@ -1,0 +1,13 @@
+[package]
+name = "frapps"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+frappslib = {path = "../../libs/frappslib"}
+regex = "1.6.0"
+rpassword = "7.1.0"
+rprompt = "1.0.5"
+tokio = { version = "1.21.2", features = ["full"] }
