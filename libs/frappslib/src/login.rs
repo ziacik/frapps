@@ -5,7 +5,7 @@ use crate::{
 
 use reqwest::{header::LOCATION, redirect::Policy, Client};
 
-pub async fn login(credentials: Credentials) -> Result<Client, GenericError> {
+pub async fn login(credentials: &Credentials) -> Result<Client, GenericError> {
 	#[cfg(not(test))]
 	let base = crate::config::base_url();
 
@@ -76,7 +76,7 @@ mod tests {
 	async fn can_login() {
 		let _server = mock_login();
 
-		let actual = login(Credentials(
+		let actual = login(&Credentials(
 			"company".to_string(),
 			"anicka.krkvava".to_string(),
 			"krkvany.zuzol".to_string(),
@@ -90,7 +90,7 @@ mod tests {
 	async fn will_error_if_bad_login() {
 		let _server = mock_login();
 
-		let actual = login(Credentials(
+		let actual = login(&Credentials(
 			"company".to_string(),
 			"anicka.krkvava".to_string(),
 			"bad.password".to_string(),

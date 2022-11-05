@@ -19,3 +19,7 @@ pub fn from_reqwest(message: &str, inner: reqwest::Error) -> GenericError {
 pub fn from_parser(message: &str, inner: ParseError) -> GenericError {
 	GenericError(message.to_string(), inner.to_string())
 }
+
+pub fn generic_error(message: &str) -> GenericError {
+	GenericError(message.to_string(), "".to_string())
+}

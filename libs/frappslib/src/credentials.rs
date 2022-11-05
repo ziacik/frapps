@@ -1,3 +1,4 @@
+#[derive(Debug, PartialEq)]
 pub struct Credentials(pub String, pub String, pub String);
 
 impl Credentials {
