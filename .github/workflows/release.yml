@@ -1,4 +1,4 @@
-# .github/workflows/release.yml
+name: Release
 
 on:
   release:
@@ -18,12 +18,14 @@ jobs:
             archive: tar.gz
           - target: x86_64-apple-darwin
             archive: tar.gz
+        package: [frapps]
     steps:
       - uses: actions/checkout@master
       - name: Compile and release
         uses: rust-build/rust-build.action@v1.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SRC_DIR: ${{ matrix.package }}
         with:
           RUSTTARGET: ${{ matrix.target }}
           ARCHIVE_TYPES: ${{ matrix.archive }}
