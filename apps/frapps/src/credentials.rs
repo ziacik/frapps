@@ -28,7 +28,7 @@ pub fn delete_credentials(organization: &str) {
 
 	match result {
 		Ok(_) => (),
-		Err(e) => error!("Unable to save credentials into keyring ({}).", e),
+		Err(e) => error!("Unable to delete credentials from keyring ({}).", e),
 	}
 }
 
