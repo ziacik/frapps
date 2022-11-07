@@ -19,14 +19,11 @@ pub struct Absence {
 	until: NaiveDate,
 }
 
-pub async fn get_absences(logged_in_client: &Client) -> Result<Vec<Absence>, GenericError> {
-	#[cfg(not(test))]
-	let base = crate::config::base_url();
-
-	#[cfg(test)]
-	let base = &mockito::server_url();
-
-	let url = format!("{}/rest/dashboard/absences", base);
+pub async fn get_absences(
+	url: &str,
+	logged_in_client: &Client,
+) -> Result<Vec<Absence>, GenericError> {
+	let url = format!("{}/rest/dashboard/absences", url);
 	let response = logged_in_client
 		.get(url)
 		.send()
@@ -63,7 +60,7 @@ fn to_absence(dto: AbsenceDto) -> Result<Absence, ParseError> {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use mockito::mock;
+	use mockito::{mock, server_url};
 
 	fn mock_server() -> mockito::Mock {
 		mock("GET", "/rest/dashboard/absences")
@@ -107,7 +104,7 @@ mod tests {
 			},
 		];
 
-		let actual = get_absences(&client).await.unwrap();
+		let actual = get_absences(&server_url(), &client).await.unwrap();
 
 		assert_eq!(&actual, &expected);
 	}

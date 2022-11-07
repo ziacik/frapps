@@ -5,14 +5,8 @@ use crate::{
 
 use reqwest::{header::LOCATION, redirect::Policy, Client};
 
-pub async fn login(credentials: &Credentials) -> Result<Client, GenericError> {
-	#[cfg(not(test))]
-	let base = crate::config::base_url();
-
-	#[cfg(test)]
-	let base = &mockito::server_url();
-
-	let url = format!("{}/login_check", base);
+pub async fn login(url: &str, credentials: &Credentials) -> Result<Client, GenericError> {
+	let url = format!("{}/login_check", url);
 	let client = Client::builder()
 		.cookie_store(true)
 		.redirect(Policy::none())
@@ -55,7 +49,7 @@ pub async fn login(credentials: &Credentials) -> Result<Client, GenericError> {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use mockito::mock;
+	use mockito::{mock, server_url};
 	use tokio_test::{assert_err, assert_ok};
 
 	fn mock_login() -> [mockito::Mock; 2] {
@@ -76,11 +70,14 @@ mod tests {
 	async fn can_login() {
 		let _server = mock_login();
 
-		let actual = login(&Credentials(
-			"company".to_string(),
-			"anicka.krkvava".to_string(),
-			"krkvany.zuzol".to_string(),
-		))
+		let actual = login(
+			&server_url(),
+			&Credentials(
+				"company".to_string(),
+				"anicka.krkvava".to_string(),
+				"krkvany.zuzol".to_string(),
+			),
+		)
 		.await;
 
 		assert_ok!(actual);
@@ -90,11 +87,14 @@ mod tests {
 	async fn will_error_if_bad_login() {
 		let _server = mock_login();
 
-		let actual = login(&Credentials(
-			"company".to_string(),
-			"anicka.krkvava".to_string(),
-			"bad.password".to_string(),
-		))
+		let actual = login(
+			&server_url(),
+			&Credentials(
+				"company".to_string(),
+				"anicka.krkvava".to_string(),
+				"bad.password".to_string(),
+			),
+		)
 		.await;
 
 		assert_err!(&actual);
