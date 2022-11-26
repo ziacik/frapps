@@ -16,10 +16,3 @@ rpassword = "7.1.0"
 rprompt = "1.0.5"
 tokio = { version = "1.21.2", features = ["full"] }
 
-[profile.release]
-opt-level = "z"  # Optimize for size.
-strip = true  # Automatically strip symbols from the binary.
-lto = true
-codegen-units = 1
-panic = "abort"
-
