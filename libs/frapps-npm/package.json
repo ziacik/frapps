@@ -1,0 +1,11 @@
+{
+	"name": "frapps",
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ziacik/frapps"
+	},
+	"bin": {
+		"frapps": "./src/run.js"
+	}
+}
