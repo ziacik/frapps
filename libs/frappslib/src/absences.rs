@@ -3,6 +3,7 @@ use chrono::{DateTime, NaiveDate, ParseError};
 use futures::Future;
 use reqwest::{Client, Response};
 use serde::Deserialize;
+use tabled::Tabled;
 
 #[derive(Debug, Deserialize)]
 #[allow(non_snake_case)]
@@ -12,7 +13,8 @@ struct AbsenceDto {
 	until: String,
 }
 
-#[derive(Debug, PartialEq)]
+// FIXME we should not have to derive Tabled here which is a display related stuff
+#[derive(Debug, PartialEq, Tabled)]
 pub struct Absence {
 	name: String,
 	absence_type: String,

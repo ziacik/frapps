@@ -10,6 +10,7 @@ chrono = "0.4.22"
 futures = "0.3.25"
 reqwest = { version = "0.11.12", default-features = false, features = ["cookies", "gzip", "deflate", "json", "rustls-tls"] }
 serde = "1.0.147"
+tabled = "0.10.0"
 tokio = { version = "1.21.2", features = ["macros"] }
 
 [dev-dependencies]

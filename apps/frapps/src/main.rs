@@ -1,9 +1,11 @@
 pub mod config;
 pub mod credentials;
+pub mod display;
 
 use crate::{
 	config::base_url,
 	credentials::{delete_credentials, retrieve_credentials, save_credentials},
+	display::display,
 };
 use frappslib::{
 	absences::get_absences,
@@ -25,7 +27,7 @@ async fn main() -> Result<(), GenericError> {
 	let client = get_credentials_and_login(&url, &organization).await?;
 
 	let absences = get_absences(&url, &client).await?;
-	println!("{:#?}", absences);
+	println!("{}", display(&absences));
 
 	Ok(())
 }
