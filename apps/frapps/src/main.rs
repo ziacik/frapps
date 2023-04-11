@@ -9,6 +9,7 @@ use crate::{
 };
 use frappslib::{
 	absences::get_absences,
+	calendar::get_calendar,
 	error::{generic_error, GenericError},
 	login::login,
 };
@@ -28,6 +29,8 @@ async fn main() -> Result<(), GenericError> {
 
 	let absences = get_absences(&url, &client).await?;
 	println!("{}", display(&absences));
+
+	get_calendar(&url, &client).await?;
 
 	Ok(())
 }

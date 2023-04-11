@@ -16,9 +16,9 @@ struct AbsenceDto {
 // FIXME we should not have to derive Tabled here which is a display related stuff
 #[derive(Debug, PartialEq, Tabled)]
 pub struct Absence {
-	name: String,
-	absence_type: String,
-	until: NaiveDate,
+	pub name: String,
+	pub absence_type: String,
+	pub until: NaiveDate,
 }
 
 pub async fn get_absences(
