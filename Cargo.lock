@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "frapps"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "env_logger",
  "frappslib",
@@ -498,7 +498,7 @@ dependencies = [
 
 [[package]]
 name = "frappslib"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "futures",
