@@ -17,13 +17,16 @@ async function run() {
 
 	console.log('Running', binaryPath);
 
-	const child = spawn(binaryPath, process.argv.slice(2));
+	const child = spawn(binaryPath, process.argv.slice(2), {
+		shell: true,
+		stdio: 'inherit',
+	});
 
-	child.stdout.on('data', (data: unknown) => {
+	child.stdout?.on('data', (data: unknown) => {
 		console.log(`${data}`);
 	});
 
-	child.stderr.on('data', (data: unknown) => {
+	child.stderr?.on('data', (data: unknown) => {
 		console.error(`${data}`);
 	});
 
